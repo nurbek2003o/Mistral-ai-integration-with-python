@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat with Mistral</title>
+</head>
+<body>
+  <h2>Chat with Mistral Model</h2>
+  <input type="text" id="question" placeholder="Savol yozing..." />
+  <button onclick="sendQuestion()">Yuborish</button>
+
+  <h3>Javob:</h3>
+  <div id="answer"></div>
+
+  <script>
+    async function sendQuestion() {
+      const q = document.getElementById("question").value;
+      const responseBox = document.getElementById("answer");
+      responseBox.innerText = "Yuklanmoqda...";
+
+      try {
+        const resp = await fetch("/ask/?q=" + encodeURIComponent(q));
+        if (!resp.ok) {
+          responseBox.innerText = "Xato: " + resp.status;
+          return;
+        }
+        const data = await resp.json();
+        responseBox.innerText = data.response || data.error || "Javob yo‘q";
+      } catch (err) {
+        responseBox.innerText = "Xato: " + err;
+      }
+    }
+  </script>
+</body>
+</html>
