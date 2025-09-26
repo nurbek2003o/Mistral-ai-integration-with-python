@@ -1,5 +1,5 @@
 # Mistral-ai-integration-with-python
-##Prerequisites
+# Prerequisites
 install docker and docker-compose
-##Run
+# Run
 after run ollama container, install mistrall (docker exec -it ollama ollama pull mistral)
